@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Dugros_Api.props" />
+</Project>
