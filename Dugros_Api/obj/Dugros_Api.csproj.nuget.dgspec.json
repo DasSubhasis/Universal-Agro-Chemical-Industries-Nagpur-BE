@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\UACI\\UACI - Nagpur\\Dugros_Api\\Dugros_Api.csproj": {}
+    "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\UACI\\UACI - Nagpur\\Dugros_Api\\Dugros_Api.csproj": {
+    "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\UACI\\UACI - Nagpur\\Dugros_Api\\Dugros_Api.csproj",
+        "projectUniqueName": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj",
         "projectName": "Dugros_Api",
-        "projectPath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\UACI\\UACI - Nagpur\\Dugros_Api\\Dugros_Api.csproj",
+        "projectPath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj",
         "packagesPath": "C:\\Users\\Payal Adhikary\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\UACI\\UACI - Nagpur\\Dugros_Api\\obj\\",
+        "outputPath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

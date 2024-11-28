@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
     {
-        builder.WithOrigins("https://uacisangraha.in", "https://apiuat.uacisangraha.in", "https://universal.zicorp.co.in", "https://api.universal.zicorp.co.in/swagger/index.html","http://localhost:4200", "https://kolkata.uacisangraha.in","https://kolkataapi.uacisangraha.in", "https://nagpur.uacisangraha.in", "https://nagpurapi.uacisangraha.in")
+        builder.WithOrigins("https://universal.zicorp.co.in", "http://localhost:4200", "https://nagpur.uacisangraha.in")
         // builder.AllowAnyOrigin()
        .AllowAnyHeader()
        .AllowAnyMethod()
@@ -44,7 +44,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opt =>
 {
-    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "Universal API", Version = "v4" });
+    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "Universal API for Nagpur", Version = "v4" });
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -85,7 +85,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Universal API V4");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Universal API for Nagpur V4");
 });
 //}
 
