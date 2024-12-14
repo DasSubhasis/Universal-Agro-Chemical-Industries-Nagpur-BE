@@ -1269,23 +1269,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Payal Adhikary\\.nuget\\packages\\": {},
+    "C:\\Users\\Angad Singh\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj",
+      "projectUniqueName": "D:\\Subhajit\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj",
       "projectName": "Dugros_Api",
-      "projectPath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj",
-      "packagesPath": "C:\\Users\\Payal Adhikary\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\obj\\",
+      "projectPath": "D:\\Subhajit\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj",
+      "packagesPath": "C:\\Users\\Angad Singh\\.nuget\\packages\\",
+      "outputPath": "D:\\Subhajit\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Payal Adhikary\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Angad Singh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1349,6 +1349,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -1357,7 +1375,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
