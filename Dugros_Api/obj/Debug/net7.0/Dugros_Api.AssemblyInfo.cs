@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Dugros_Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5134284aad4e5b383f2b3571568d9a0a21ea5760")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+947c44222edee97fd757e33c6d9bf2fa47a04ec3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Dugros_Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Dugros_Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

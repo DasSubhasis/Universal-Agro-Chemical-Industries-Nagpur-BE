@@ -141,6 +141,21 @@ namespace Dugros_Api.Controllers
         }
 
 
+        public class AllPurchaseIndentDetails
+        {
+            public Guid Purchase_Indent_Id { get; set; }
+            public string Voucher_No { get; set; }
+            public DateTime Voucher_Date { get; set; }
+            public Guid Purchase_Order_Trn_Id { get; set; }
+            public string PurchaseOrderVoucherNo { get; set; }
+            public DateTime PurchaseOrderTransactionDate { get; set; }
+            public Guid Purchase_Bill_Trn_Id { get; set; }
+            public string PurchaseBillVoucherNo { get; set; }
+            public DateTime PurchaseBillTransactionDate { get; set; }
+            public DateTime DispatchDate { get; set; }
+        }
+
+
 
         [HttpGet("GetPurchaseOrderSummary")]
         public IActionResult GetPurchaseOrderSummary([FromQuery] DateTime? fromDate,[FromQuery] DateTime? toDate, [FromQuery] Guid? statusId,[FromQuery] string? supplierName, [FromQuery] Guid? userId)
@@ -613,6 +628,59 @@ namespace Dugros_Api.Controllers
                 return StatusCode(500, new { Message = "Internal server error", Details = ex.Message });
             }
         }
+
+
+
+        [HttpGet("GetPurchase")]
+        public IActionResult GetAllPurchaseIndentDetails()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+                {
+                    connection.Open();
+
+                    using (var command = new SqlCommand("dbo.sp_GetPurchaseIndentDetails", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var purchaseIndentDetailsList = new List<AllPurchaseIndentDetails>();
+
+                            while (reader.Read())
+                            {
+                                purchaseIndentDetailsList.Add(new AllPurchaseIndentDetails
+                                {
+                                    Purchase_Indent_Id = reader["purchase_indent_id"] != DBNull.Value ? (Guid)reader["purchase_indent_id"] : Guid.Empty,
+                                    Voucher_No = reader["voucher_no"]?.ToString(),
+                                    Voucher_Date = reader["voucher_date"] != DBNull.Value ? (DateTime)reader["voucher_date"] : DateTime.MinValue,
+                                    Purchase_Order_Trn_Id = reader["purchase_Order_trn_id"] != DBNull.Value ? (Guid)reader["purchase_Order_trn_id"] : Guid.Empty,
+                                    PurchaseOrderVoucherNo = reader["PurchaseOrderVoucherNo"]?.ToString(),
+                                    PurchaseOrderTransactionDate = reader["PurchaseOrderTransactionDate"] != DBNull.Value ? (DateTime)reader["PurchaseOrderTransactionDate"] : DateTime.MinValue,
+                                    Purchase_Bill_Trn_Id = reader["purchase_Bill_trn_id"] != DBNull.Value ? (Guid)reader["purchase_Bill_trn_id"] : Guid.Empty,
+                                    PurchaseBillVoucherNo = reader["PurchaseBillVoucherNo"]?.ToString(),
+                                    PurchaseBillTransactionDate = reader["PurchaseBillTransactionDate"] != DBNull.Value ? (DateTime)reader["PurchaseBillTransactionDate"] : DateTime.MinValue,
+                                    DispatchDate = reader["DispatchDate"] != DBNull.Value ? (DateTime)reader["DispatchDate"] : DateTime.MinValue
+                                });
+                            }
+
+                            return Ok(purchaseIndentDetailsList);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+
+
+
+
 
 
     }
