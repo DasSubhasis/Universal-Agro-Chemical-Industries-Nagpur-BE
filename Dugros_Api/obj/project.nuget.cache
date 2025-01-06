@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JiDUAzqsjsVyzTDXAMqnmpNq9yRvx1q5ssaqsHbCSwNmTPrJi5ZdUa7O3n2urzUPPumccALVPd5136K9sU5ljA==",
+  "dgSpecHash": "wBv4ZH+TwyIX4fjKdMKGQQtI4JE4QJX2B278aBcdmbCC92TAA5tNnMj9ChMkm3sgxmhwDH37zfOjIWCKbHWquA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\Universal_Github\\Universal-Agro-Chemical-Industries-Nagpur-BE\\Dugros_Api\\Dugros_Api.csproj",
+  "projectFilePath": "C:\\Users\\Payal Adhikary\\Documents\\Projects\\Working\\UACI\\UACI - Nagpur\\Dugros_Api\\Dugros_Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Payal Adhikary\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.17\\microsoft.aspnetcore.authentication.jwtbearer.7.0.17.nupkg.sha512",
     "C:\\Users\\Payal Adhikary\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
