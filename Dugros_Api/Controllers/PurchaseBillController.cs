@@ -31,7 +31,9 @@ namespace Dugros_Api.Controllers
             public string voucher_type { get; set; }
             public string doc_no { get; set; }
             public string order_no { get; set; }
-            public DateOnly doc_date { get; set; }
+            //public DateOnly doc_date { get; set; }
+
+            public string doc_date { get; set; }
             public string vendor_id { get; set; }
             public string vendor_name { get; set; }
             
@@ -173,9 +175,11 @@ namespace Dugros_Api.Controllers
 
         public class dispatchPB
         {
-            public DateTime dispatch_dt { get; set; }
+            //public DateTime dispatch_dt { get; set; }
+            public string dispatch_dt { get; set; }
             public string dispatch_mode { get; set; }
-            public DateTime? expected_arrival_date { get; set; }
+            //public DateTime? expected_arrival_date { get; set; }
+            public string expected_arrival_date { get; set; }
             public string vehicle_no { get; set; }
             public string contact_no { get; set; }
             public string transportername { get; set; }
@@ -204,7 +208,9 @@ namespace Dugros_Api.Controllers
             public decimal amt_igst { get; set; }
             public decimal amt_total { get; set; }
             public string base_reference_no { get; set; }
-            public DateTime base_reference_date { get; set; }
+            //public DateTime base_reference_date { get; set; }
+
+            public string base_reference_date { get; set; }
             public string base_reference_type { get; set; }
             //public string voucher_no { get; set; }
             //public DateTime voucher_date { get; set; }
@@ -896,7 +902,7 @@ namespace Dugros_Api.Controllers
                                     voucher_type = reader.IsDBNull(reader.GetOrdinal("voucher_type")) ? string.Empty : reader.GetString(reader.GetOrdinal("voucher_type")),
                                     doc_no = reader.IsDBNull(reader.GetOrdinal("doc_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("doc_no")),
                                     order_no = reader.IsDBNull(reader.GetOrdinal("order_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("order_no")),
-                                    doc_date = reader.IsDBNull(reader.GetOrdinal("doc_date")) ? DateOnly.MinValue : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("doc_date"))),
+                                    doc_date = reader.GetOrdinal("doc_date").ToString(),
                                     vendor_id = reader.IsDBNull(reader.GetOrdinal("vendor_id")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_id")),
                                     vendor_name = reader.IsDBNull(reader.GetOrdinal("vendor_name")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_name")),
                                     vendor_ref_no = reader.IsDBNull(reader.GetOrdinal("vendor_ref_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_ref_no")),
@@ -978,7 +984,7 @@ namespace Dugros_Api.Controllers
                                     voucher_type = reader.IsDBNull(reader.GetOrdinal("voucher_type")) ? string.Empty : reader.GetString(reader.GetOrdinal("voucher_type")),
                                     doc_no = reader.IsDBNull(reader.GetOrdinal("doc_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("doc_no")),
                                     order_no = reader.IsDBNull(reader.GetOrdinal("order_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("order_no")),
-                                    doc_date = reader.IsDBNull(reader.GetOrdinal("doc_date")) ? DateOnly.MinValue : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("doc_date"))),
+                                    doc_date = reader.GetOrdinal("doc_date").ToString(),
                                     vendor_id = reader.IsDBNull(reader.GetOrdinal("vendor_id")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_id")),
                                     vendor_name = reader.IsDBNull(reader.GetOrdinal("vendor_name")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_name")),
                                     vendor_ref_no = reader.IsDBNull(reader.GetOrdinal("vendor_ref_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_ref_no")),

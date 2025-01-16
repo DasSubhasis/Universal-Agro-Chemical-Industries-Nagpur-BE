@@ -26,9 +26,10 @@ namespace Dugros_Api.Controllers
             public Guid? purchase_order_id { get; set; }
             public string? voucher_id { get; set; }
             public string? voucher_no { get; set; }
-            public DateTime? transaction_date { get; set; }
-         
-         public string? vendor_id { get; set; }
+            //public DateTime? transaction_date { get; set; }
+            public string transaction_date { get; set; }
+
+            public string? vendor_id { get; set; }
             public string? warehouse_id { get; set; }
             public string? warehouse_name { get; set; }
             public string? narration { get; set; }
@@ -115,7 +116,7 @@ namespace Dugros_Api.Controllers
                                         purchase_order_id = reader["purchase_order_id"] != DBNull.Value ? (Guid)reader["purchase_order_id"] : Guid.Empty,
                                         voucher_id = reader["voucher_id"] != DBNull.Value ? reader["voucher_id"].ToString() : null,
                                         voucher_no = reader["voucher_no"] != DBNull.Value ? reader["voucher_no"].ToString() : null,
-                                        transaction_date = reader["voucher_date"] != DBNull.Value ? (DateTime)reader["voucher_date"] : (DateTime?)null,
+                                        transaction_date = reader["voucher_date"].ToString(),
                                         
                                         vendor_id = reader["supplier_id"] != DBNull.Value ? reader["supplier_id"].ToString() : null,
                                         warehouse_id = reader["warehouse_id"] != DBNull.Value ? reader["warehouse_id"].ToString() : null,

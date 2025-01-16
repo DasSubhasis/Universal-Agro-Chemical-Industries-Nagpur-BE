@@ -23,9 +23,12 @@ namespace Dugros_Api.Controllers
         {
             public Guid id { get; set; }
             public Guid trn_id { get; set; }
-            public DateTime? exp_delivery_date { get; set; }
-            public DateTime? dispatch_date { get; set; }
-            public DateTime? created_date { get; set; }
+            //public DateTime? exp_delivery_date { get; set; }
+            public string exp_delivery_date { get; set; }
+            //public DateTime? dispatch_date { get; set; }
+            public string dispatch_date { get; set; }
+            //public DateTime? created_date { get; set; }
+            public string created_date { get; set; }
             public string notes { get; set; }
             public Guid user_id { get; set; }
             public string username { get; set; }
@@ -72,9 +75,12 @@ namespace Dugros_Api.Controllers
                                     {
                                         id = reader["id"] != DBNull.Value ? (Guid)reader["id"] : Guid.Empty,
                                         trn_id = reader["trn_id"] != DBNull.Value ? (Guid)reader["trn_id"] : Guid.Empty,
-                                        exp_delivery_date = reader["exp_delivery_date"] != DBNull.Value ? (DateTime)reader["exp_delivery_date"] : (DateTime?)null,
-                                        dispatch_date = reader["dispatch_date"] != DBNull.Value ? (DateTime)reader["dispatch_date"] : (DateTime?)null,
-                                        created_date = reader["created_date"] != DBNull.Value ? (DateTime)reader["created_date"] : (DateTime?)null,
+                                        //exp_delivery_date = reader["exp_delivery_date"] != DBNull.Value ? (DateTime)reader["exp_delivery_date"] : (DateTime?)null,
+                                        //dispatch_date = reader["dispatch_date"] != DBNull.Value ? (DateTime)reader["dispatch_date"] : (DateTime?)null,
+                                        //created_date = reader["created_date"] != DBNull.Value ? (DateTime)reader["created_date"] : (DateTime?)null,
+                                        exp_delivery_date = reader["exp_delivery_date"].ToString(),
+                                        dispatch_date = reader["dispatch_date"].ToString(),
+                                        created_date = reader["created_date"].ToString(),
                                         notes = reader["notes"] != DBNull.Value ? reader["notes"].ToString() : null,
                                         user_id = reader["user_id"] != DBNull.Value ? (Guid)reader["user_id"] : Guid.Empty,
                                         username = reader["username"] != DBNull.Value ? reader["username"].ToString() : null,

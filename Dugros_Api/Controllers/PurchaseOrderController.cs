@@ -41,7 +41,9 @@ namespace Dugros_Api.Controllers
             public string voucher_type { get; set; }
             public string doc_no { get; set; }
             public string order_no { get; set; }
-            public DateOnly doc_date { get; set; }
+            //public DateOnly doc_date { get; set; }
+
+            public string doc_date { get; set; }
             public string vendor_id { get; set; }
             public string vendor_name { get; set; }
             public string vendor_address { get; set; }
@@ -71,7 +73,9 @@ namespace Dugros_Api.Controllers
             public decimal rounding_off { get; set; }
             public decimal net_bill_amt { get; set; }
             //public DateTime exp_bill_date { get; set; }
-            public DateTime po_due_date { get; set; }
+            //public DateTime po_due_date { get; set; }
+
+            public string po_due_date { get; set; }
             public List<getitems> item_details { get; set; }
             public List<getterms> term_details { get; set; }
             public List<quotations> quotation_details { get; set; }
@@ -86,8 +90,12 @@ namespace Dugros_Api.Controllers
             public int print_enable { get; set; }
             public int cheque_applicable { get; set; }
             public string t_c { get; set; }
-            public DateTime? last_followup_date { get; set; }
-            public DateTime? exp_delivery_date { get; set; }
+            //public DateTime? last_followup_date { get; set; }
+
+            public string last_followup_date { get; set; }
+            //public DateTime? exp_delivery_date { get; set; }
+
+            public string exp_delivery_date { get; set; }
             public string contact_person { get; set; }
             public string unit_name { get; set; }
             public string dev_inv { get; set; }
@@ -250,7 +258,8 @@ namespace Dugros_Api.Controllers
             public decimal amt_igst { get; set; }
             public decimal amt_total { get; set; }
             public string base_reference_no { get; set; }
-            public DateTime base_reference_date { get; set; }
+            //public DateTime base_reference_date { get; set; }
+            public string base_reference_date { get; set; }
             public string base_reference_type { get; set; }
             public List<response_delivery_PI>? delivery_schedule { get; set; }
             //public string voucher_no { get; set; }
@@ -565,7 +574,7 @@ namespace Dugros_Api.Controllers
                                     status_name = reader.IsDBNull(reader.GetOrdinal("status_name")) ? string.Empty : reader.GetString(reader.GetOrdinal("status_name")),
                                     doc_no = reader.IsDBNull(reader.GetOrdinal("doc_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("doc_no")),
                                     order_no = reader.IsDBNull(reader.GetOrdinal("order_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("order_no")),
-                                    doc_date = reader.IsDBNull(reader.GetOrdinal("doc_date")) ? DateOnly.MinValue : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("doc_date"))),
+                                    doc_date = reader.GetOrdinal("doc_date").ToString(),
                                     vendor_id = reader.IsDBNull(reader.GetOrdinal("vendor_id")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_id")),
                                     vendor_name = reader.IsDBNull(reader.GetOrdinal("vendor_name")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_name")),
                                     vendor_ref_no = reader.IsDBNull(reader.GetOrdinal("vendor_ref_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_ref_no")),
@@ -588,7 +597,7 @@ namespace Dugros_Api.Controllers
                                     total_bill_amt = reader.IsDBNull(reader.GetOrdinal("total_bill_amt")) ? 0 : reader.GetDecimal(reader.GetOrdinal("total_bill_amt")),
                                     rounding_off = reader.IsDBNull(reader.GetOrdinal("rounding_off")) ? 0 : reader.GetDecimal(reader.GetOrdinal("rounding_off")),
                                     net_bill_amt = reader.IsDBNull(reader.GetOrdinal("net_bill_amt")) ? 0 : reader.GetDecimal(reader.GetOrdinal("net_bill_amt")),
-                                    po_due_date = reader.IsDBNull(reader.GetOrdinal("po_due_date")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("po_due_date")),
+                                    po_due_date = reader.GetOrdinal("po_due_date").ToString(),
                                     remarks = reader.IsDBNull(reader.GetOrdinal("remarks")) ? string.Empty : reader.GetString(reader.GetOrdinal("remarks")),
                                     contact_person = reader.IsDBNull(reader.GetOrdinal("contact_person")) ? string.Empty : reader.GetString(reader.GetOrdinal("contact_person")),
                                     t_c = reader.IsDBNull(reader.GetOrdinal("t_c")) ? string.Empty : reader.GetString(reader.GetOrdinal("t_c")),
@@ -597,8 +606,8 @@ namespace Dugros_Api.Controllers
                                     approval_status = reader.IsDBNull(reader.GetOrdinal("app_status_name")) ? string.Empty : reader.GetString(reader.GetOrdinal("app_status_name")),
                                     print_enable = Convert.ToInt32(reader["print_enable"]),
                                     cheque_applicable = Convert.ToInt32(reader["cheque_applicable"]),
-                                    last_followup_date = reader["last_followup_date"] != DBNull.Value ? (DateTime)reader["last_followup_date"] : (DateTime?)null,
-                                    exp_delivery_date = reader["exp_delivery_date"] != DBNull.Value ? (DateTime)reader["exp_delivery_date"] : (DateTime?)null,
+                                    last_followup_date = reader["last_followup_date"].ToString(),
+                                    exp_delivery_date = reader["exp_delivery_date"].ToString(),
                                     tag = reader["tag"].ToString(),
                                     cheque_issued = Convert.ToInt32(reader["cheque_issued"]),
                                     last_approved_by = reader["last_approved_by"].ToString()
@@ -655,7 +664,7 @@ namespace Dugros_Api.Controllers
                                     voucher_type = reader.IsDBNull(reader.GetOrdinal("voucher_type")) ? string.Empty : reader.GetString(reader.GetOrdinal("voucher_type")),
                                     doc_no = reader.IsDBNull(reader.GetOrdinal("doc_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("doc_no")),
                                     order_no = reader.IsDBNull(reader.GetOrdinal("order_no")) ? string.Empty : reader.GetString(reader.GetOrdinal("order_no")),
-                                    doc_date = reader.IsDBNull(reader.GetOrdinal("doc_date")) ? DateOnly.MinValue : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("doc_date"))),
+                                    doc_date = reader.GetOrdinal("doc_date").ToString(),
                                     vendor_id = reader.IsDBNull(reader.GetOrdinal("vendor_id")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_id")),
                                     vendor_name = reader.IsDBNull(reader.GetOrdinal("vendor_name")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_name")),
                                     vendor_address = reader.IsDBNull(reader.GetOrdinal("vendor_address")) ? string.Empty : reader.GetString(reader.GetOrdinal("vendor_address")),
@@ -685,7 +694,7 @@ namespace Dugros_Api.Controllers
                                     other_charges_total = reader.IsDBNull(reader.GetOrdinal("other_charges_total")) ? 0 : reader.GetDecimal(reader.GetOrdinal("other_charges_total")),
                                     rounding_off = reader.IsDBNull(reader.GetOrdinal("rounding_off")) ? 0 : reader.GetDecimal(reader.GetOrdinal("rounding_off")),
                                     net_bill_amt = reader.IsDBNull(reader.GetOrdinal("net_bill_amt")) ? 0 : reader.GetDecimal(reader.GetOrdinal("net_bill_amt")),
-                                    po_due_date = reader.IsDBNull(reader.GetOrdinal("po_due_date")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("po_due_date")),
+                                    po_due_date = reader.GetOrdinal("po_due_date").ToString(),
                                     remarks = reader.IsDBNull(reader.GetOrdinal("remarks")) ? string.Empty : reader.GetString(reader.GetOrdinal("remarks")),
                                     t_c = reader.IsDBNull(reader.GetOrdinal("t_c")) ? string.Empty : reader.GetString(reader.GetOrdinal("t_c")),
                                     warehouse_id = reader.IsDBNull(reader.GetOrdinal("warehouse_id")) ? string.Empty : reader.GetString(reader.GetOrdinal("warehouse_id")),

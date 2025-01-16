@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using static Dugros_Api.Controllers.ColorController;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
 
 namespace Dugros_Api.Controllers
@@ -42,7 +43,10 @@ namespace Dugros_Api.Controllers
             public string Warehouse_Id { get; set; }
             public string Last_Approved_By { get; set; }
             public string Cheque_Issued { get; set; }
-           
+            public int? Ages_Days { get; set; }
+
+
+
         }
 
         public class PurchaseIndentDetailsDto
@@ -72,7 +76,9 @@ namespace Dugros_Api.Controllers
             public string App_Status_Name { get; set; }
             public Guid Requested_By { get; set; }
             public string Last_Approved_By { get; set; }
-           
+
+            public int? Ages_Days { get; set; }
+
         }
 
         public class PurchaseOrderDetails
@@ -94,6 +100,8 @@ namespace Dugros_Api.Controllers
             public string App_Status_Name { get; set; }
             public Guid? PurchaseOrderTrnId { get; set; }
             //public string Narration { get; set; }
+
+            public int? Ages_Days { get; set; }
         }
 
         public class ApprovalDuePIRegister
@@ -148,11 +156,11 @@ namespace Dugros_Api.Controllers
             public DateTime Voucher_Date { get; set; }
             public Guid Purchase_Order_Trn_Id { get; set; }
             public string PurchaseOrderVoucherNo { get; set; }
-            public DateTime PurchaseOrderTransactionDate { get; set; }
+            public string PurchaseOrderTransactionDate { get; set; }
             public Guid Purchase_Bill_Trn_Id { get; set; }
             public string PurchaseBillVoucherNo { get; set; }
-            public DateTime PurchaseBillTransactionDate { get; set; }
-            public DateTime DispatchDate { get; set; }
+            public string PurchaseBillTransactionDate { get; set; }
+            public string DispatchDate { get; set; }
         }
 
 
@@ -210,9 +218,12 @@ namespace Dugros_Api.Controllers
                                     Warehouse_Id = reader["warehouse_id"]?.ToString(),
                                     Last_Approved_By = reader["last_approved_by"]?.ToString() ?? string.Empty,
                                     //Cheque_Issued = reader["cheque_issued"] != DBNull.Value ? Convert.ToInt32(reader["cheque_issued"]) : 0,
-                                    Cheque_Issued = reader["cheque_issued"].ToString()
-                                  
-                                   
+                                    Cheque_Issued = reader["cheque_issued"].ToString(),
+                                    //Ages_Days = reader["Ages_Days"] != DBNull.Value ? (int?)reader["Ages_Days"] : null
+
+                                    Ages_Days = reader["Ages_Days"] != DBNull.Value ? Convert.ToInt32(reader["Ages_Days"]) : 0,
+
+
                                 });
                             }
 
@@ -301,9 +312,12 @@ namespace Dugros_Api.Controllers
                                     //Approval_Status = reader["Approval_Status"]?.ToString(),
                                     App_Status_Name = reader["App_Status_Name"]?.ToString(),
                                     Requested_By = reader["requested_by"] != DBNull.Value && Guid.TryParse(reader["requested_by"]?.ToString(), out Guid requestedBy) ? requestedBy : Guid.Empty,
-                                    Last_Approved_By = reader["Last_Approved_By"]?.ToString()
+                                    Last_Approved_By = reader["Last_Approved_By"]?.ToString(),
                                     // You can set default values for any other properties if needed, such as Edit_Enable or Delete_Enable
-                                   
+                                    //Ages_Days = reader["Ages_Days"] != DBNull.Value ? (int?)reader["Ages_Days"] : null
+
+                                    Ages_Days = reader["Ages_Days"] != DBNull.Value ? Convert.ToInt32(reader["Ages_Days"]) : 0,
+
                                 });
                             }
 
@@ -378,6 +392,8 @@ namespace Dugros_Api.Controllers
                                     EXPRecptDate = reader["EXP_Rcpt_Date"] != DBNull.Value ? (DateTime?)reader["EXP_Rcpt_Date"] : null,
                                     PurchaseOrderTrnId = reader["purchase_Order_trn_id"] != DBNull.Value && Guid.TryParse(reader["purchase_Order_trn_id"]?.ToString(), out Guid poTrnId) ? poTrnId : (Guid?)null,
                                     //Narration = reader["narration"]?.ToString()
+                                    //Ages_Days = reader["Ages_Days"] != DBNull.Value ? (int?)reader["Ages_Days"] : null
+                                    Ages_Days = reader["Ages_Days"] != DBNull.Value ? Convert.ToInt32(reader["Ages_Days"]) : 0
                                 });
                             }
 
@@ -632,7 +648,7 @@ namespace Dugros_Api.Controllers
 
 
         [HttpGet("GetPurchase")]
-        public IActionResult GetAllPurchaseIndentDetails()
+        public IActionResult GetAllPurchaseIndentDetails([FromQuery] string? status)
         {
             try
             {
@@ -643,6 +659,18 @@ namespace Dugros_Api.Controllers
                     using (var command = new SqlCommand("dbo.sp_GetPurchaseIndentDetails", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
+
+                        //command.Parameters.AddWithValue("@status", string.IsNullOrEmpty(status) ? (object)DBNull.Value : status);
+
+                        command.Parameters.AddWithValue("@status", string.IsNullOrEmpty(status) ? "All" : status);
+
+
+                        // Define the output parameter
+                        var outputMessageParam = new SqlParameter("@output_message", SqlDbType.NVarChar, -1)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputMessageParam);
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -657,15 +685,26 @@ namespace Dugros_Api.Controllers
                                     Voucher_Date = reader["voucher_date"] != DBNull.Value ? (DateTime)reader["voucher_date"] : DateTime.MinValue,
                                     Purchase_Order_Trn_Id = reader["purchase_Order_trn_id"] != DBNull.Value ? (Guid)reader["purchase_Order_trn_id"] : Guid.Empty,
                                     PurchaseOrderVoucherNo = reader["PurchaseOrderVoucherNo"]?.ToString(),
-                                    PurchaseOrderTransactionDate = reader["PurchaseOrderTransactionDate"] != DBNull.Value ? (DateTime)reader["PurchaseOrderTransactionDate"] : DateTime.MinValue,
+                                    PurchaseOrderTransactionDate = reader["PurchaseOrderTransactionDate"].ToString(),
                                     Purchase_Bill_Trn_Id = reader["purchase_Bill_trn_id"] != DBNull.Value ? (Guid)reader["purchase_Bill_trn_id"] : Guid.Empty,
                                     PurchaseBillVoucherNo = reader["PurchaseBillVoucherNo"]?.ToString(),
-                                    PurchaseBillTransactionDate = reader["PurchaseBillTransactionDate"] != DBNull.Value ? (DateTime)reader["PurchaseBillTransactionDate"] : DateTime.MinValue,
-                                    DispatchDate = reader["DispatchDate"] != DBNull.Value ? (DateTime)reader["DispatchDate"] : DateTime.MinValue
+                                    PurchaseBillTransactionDate = reader["PurchaseBillTransactionDate"].ToString(),
+                                    DispatchDate = reader["DispatchDate"].ToString()
                                 });
                             }
 
-                            return Ok(purchaseIndentDetailsList);
+                            // Close the reader before accessing the output parameter
+                            reader.Close();
+
+                            // Retrieve the output message
+                            string outputMessage = outputMessageParam.Value?.ToString();
+
+                            // Include the output message in the response
+                            return Ok(new
+                            {
+                                OutputMessage = outputMessage,
+                                PurchaseIndentDetails = purchaseIndentDetailsList
+                            });
                         }
                     }
                 }
@@ -675,6 +714,50 @@ namespace Dugros_Api.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        //public IActionResult GetAllPurchaseIndentDetails()
+        //{
+        //    try
+        //    {
+        //        using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+        //        {
+        //            connection.Open();
+
+        //            using (var command = new SqlCommand("dbo.sp_GetPurchaseIndentDetails", connection))
+        //            {
+        //                command.CommandType = CommandType.StoredProcedure;
+
+        //                using (var reader = command.ExecuteReader())
+        //                {
+        //                    var purchaseIndentDetailsList = new List<AllPurchaseIndentDetails>();
+
+        //                    while (reader.Read())
+        //                    {
+        //                        purchaseIndentDetailsList.Add(new AllPurchaseIndentDetails
+        //                        {
+        //                            Purchase_Indent_Id = reader["purchase_indent_id"] != DBNull.Value ? (Guid)reader["purchase_indent_id"] : Guid.Empty,
+        //                            Voucher_No = reader["voucher_no"]?.ToString(),
+        //                            Voucher_Date = reader["voucher_date"] != DBNull.Value ? (DateTime)reader["voucher_date"] : DateTime.MinValue,
+        //                            Purchase_Order_Trn_Id = reader["purchase_Order_trn_id"] != DBNull.Value ? (Guid)reader["purchase_Order_trn_id"] : Guid.Empty,
+        //                            PurchaseOrderVoucherNo = reader["PurchaseOrderVoucherNo"]?.ToString(),
+        //                            PurchaseOrderTransactionDate = reader["PurchaseOrderTransactionDate"] != DBNull.Value ? (DateTime)reader["PurchaseOrderTransactionDate"] : DateTime.MinValue,
+        //                            Purchase_Bill_Trn_Id = reader["purchase_Bill_trn_id"] != DBNull.Value ? (Guid)reader["purchase_Bill_trn_id"] : Guid.Empty,
+        //                            PurchaseBillVoucherNo = reader["PurchaseBillVoucherNo"]?.ToString(),
+        //                            PurchaseBillTransactionDate = reader["PurchaseBillTransactionDate"] != DBNull.Value ? (DateTime)reader["PurchaseBillTransactionDate"] : DateTime.MinValue,
+        //                            DispatchDate = reader["DispatchDate"] != DBNull.Value ? (DateTime)reader["DispatchDate"] : DateTime.MinValue
+        //                        });
+        //                    }
+
+        //                    return Ok(purchaseIndentDetailsList);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Internal server error: {ex.Message}");
+        //    }
+        //}
 
 
 

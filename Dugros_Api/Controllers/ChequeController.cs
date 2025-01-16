@@ -42,7 +42,8 @@ namespace Dugros_Api.Controllers
         {
             public Guid po_trn_id { get; set; }
             public string voucher_no { get; set; }
-            public DateTime transaction_date { get; set; }
+            //public DateTime transaction_date { get; set; }
+            public string transaction_date { get; set; }
             public string  Name { get; set; }
             public decimal net_bill_amt { get; set; }
             public decimal cheque_amt { get; set; }
@@ -54,7 +55,8 @@ namespace Dugros_Api.Controllers
         {
             public Guid cheque_trn_id { get; set; }
             public string cheque_no { get; set; }
-            public DateTime cheque_date { get; set; }
+            //public DateTime cheque_date { get; set; }
+            public string cheque_date { get; set; }
             public decimal cheque_amt { get; set; }
             public string bank_name { get; set; }
             public string payment_mode { get; set; }
@@ -133,8 +135,7 @@ namespace Dugros_Api.Controllers
         }
 
         [HttpGet("getCheque")]
-        public IActionResult GetChequeIssued(Guid userId,string method,string? voucher_no,string? party_name,DateTime? start_dt,DateTime?
-            end_dt,string? cheque_no)
+        public IActionResult GetChequeIssued(Guid userId,string method,string? voucher_no,string? party_name,DateTime? start_dt,DateTime?end_dt,string? cheque_no)
         {
             try
             {
@@ -173,7 +174,7 @@ namespace Dugros_Api.Controllers
                                     {
                                         po_trn_id = reader["po_trn_id"] == DBNull.Value ? Guid.Empty : (Guid)reader["po_trn_id"],
                                         voucher_no = reader["voucher_no"] == DBNull.Value ? string.Empty : reader["voucher_no"].ToString(),
-                                        transaction_date = reader["transaction_date"] == DBNull.Value ? DateTime.MinValue : (DateTime)reader["transaction_date"],
+                                        transaction_date = reader["transaction_date"].ToString(),
                                         Name = reader["Name"] == DBNull.Value ? string.Empty : reader["Name"].ToString(),
                                         net_bill_amt = reader["net_bill_amt"] == DBNull.Value ? 0m : (decimal)reader["net_bill_amt"],
                                         cheque_amt = reader["cheque_amt"] == DBNull.Value ? 0m : (decimal)reader["cheque_amt"],
@@ -247,7 +248,7 @@ namespace Dugros_Api.Controllers
                                     {
                                         cheque_trn_id = reader["cheque_trn_id"] == DBNull.Value ? Guid.Empty : (Guid)reader["cheque_trn_id"],
                                         cheque_no = reader["cheque_no"] == DBNull.Value ? string.Empty : reader["cheque_no"].ToString(),
-                                        cheque_date = reader["cheque_date"] == DBNull.Value ? DateTime.MinValue : (DateTime)reader["cheque_date"],
+                                        cheque_date = reader["cheque_date"].ToString(),
                                         cheque_amt = reader["cheque_amt"] == DBNull.Value ? 0m : (decimal)reader["cheque_amt"],
                                         bank_name = reader["bank_name"] == DBNull.Value ? string.Empty : reader["bank_name"].ToString(),
                                         payment_mode = reader["payment_mode"] == DBNull.Value ? string.Empty : reader["payment_mode"].ToString()
